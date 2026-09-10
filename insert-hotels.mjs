@@ -1,0 +1,195 @@
+import fs from 'node:fs';
+import { createClient } from '@supabase/supabase-js';
+
+const env = Object.fromEntries(
+  fs.readFileSync('.env', 'utf8')
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => {
+      const i = line.indexOf('=');
+      return [line.slice(0, i), line.slice(i + 1)];
+    })
+);
+
+const supabase = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
+
+const rows = [
+  {
+    id: '4da0a8c8-5501-4b93-9d84-096d5902a123',
+    project_name: 'ذا أوبروي المدينة',
+    category: 'فندقي',
+    description: 'فندق فاخر في المدينة المنورة يوفر إقامة راقية مع خدمات ضيافة عالمية وموقع مناسب قرب الحرم.',
+    latitude: 24.4667,
+    longitude: 39.5755,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2019-01-01',
+    end_date: '2023-12-31',
+    duration_years: 4,
+    executing_entity: 'The Oberoi Hotels & Resorts',
+    area_value: 12000,
+    area_unit: 'square_meter',
+  },
+  {
+    id: 'f6a6914a-42a0-4a93-9c7a-3f3262ccf7c3',
+    project_name: 'أنوار المدينة موفنبيك',
+    category: 'فندقي',
+    description: 'فندق حديث ومريح في المدينة المنورة يتيح إقامة مناسبة مع خدمات كاملة وموقع جيد.',
+    latitude: 24.4726,
+    longitude: 39.6112,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2010-01-01',
+    end_date: '2016-12-31',
+    duration_years: 6,
+    executing_entity: 'Accor',
+    area_value: 15000,
+    area_unit: 'square_meter',
+  },
+  {
+    id: '92b0daa9-0ef9-4d8e-9fff-d144bfb7efec',
+    project_name: 'بولمان زمزم المدينة',
+    category: 'فندقي',
+    description: 'فندق مركزي يوفر إقامة مريحة ومرافق حديثة في قلب المدينة المنورة.',
+    latitude: 24.4695,
+    longitude: 39.5976,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2014-01-01',
+    end_date: '2020-12-31',
+    duration_years: 6,
+    executing_entity: 'Accor Hotels',
+    area_value: 14000,
+    area_unit: 'square_meter',
+  },
+  {
+    id: '10ea0894-7efa-47f0-b2a8-913a3669f97d',
+    project_name: 'شذا المدينة',
+    category: 'فندقي',
+    description: 'فندق جذاب يقدم تجربة إقامة أنيقة ومريحة مع خدمات متكاملة في المدينة المنورة.',
+    latitude: 24.4743,
+    longitude: 39.5844,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2011-01-01',
+    end_date: '2017-12-31',
+    duration_years: 6,
+    executing_entity: 'Shaza Hotels',
+    area_value: 13500,
+    area_unit: 'square_meter',
+  },
+  {
+    id: '8a3d6c0f-5b6f-492f-a1a8-14597541df19',
+    project_name: 'دار التقوى',
+    category: 'فندقي',
+    description: 'فندق عملي ومريح يناسب الزوار ويقدم خدمات موثوقة ومساكن مناسبة داخل المدينة.',
+    latitude: 24.4708,
+    longitude: 39.6001,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2010-01-01',
+    end_date: '2018-12-31',
+    duration_years: 8,
+    executing_entity: 'دار التقوى',
+    area_value: 11000,
+    area_unit: 'square_meter',
+  },
+  {
+    id: 'a2d3857a-9f84-41d7-b5d0-e5b91c03d8ab',
+    project_name: 'سوفيتل شهد المدينة',
+    category: 'فندقي',
+    description: 'فندق راقٍ يدمج بين الراحة والهوية المحلية مع خدمات متكاملة وبيئة مريحة.',
+    latitude: 24.4727,
+    longitude: 39.5852,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2012-01-01',
+    end_date: '2019-12-31',
+    duration_years: 7,
+    executing_entity: 'Sofitel',
+    area_value: 16000,
+    area_unit: 'square_meter',
+  },
+  {
+    id: 'c3170fe1-96db-4d74-80c7-47d1db9b5355',
+    project_name: 'هيلتون المدينة',
+    category: 'فندقي',
+    description: 'فندق عالمي يقدّم خدمة مميزة في المدينة المنورة مع إقامات مريحة وأجواء مناسبة للضيوف.',
+    latitude: 24.4689,
+    longitude: 39.5838,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2010-01-01',
+    end_date: '2019-12-31',
+    duration_years: 9,
+    executing_entity: 'Hilton Worldwide',
+    area_value: 17500,
+    area_unit: 'square_meter',
+  },
+  {
+    id: '5a3f80b5-3e96-40ef-b0aa-f755e8749b7f',
+    project_name: 'كراون بلازا المدينة',
+    category: 'فندقي',
+    description: 'فندق فاخر يقدم خدمات ممتازة ومرافق حديثة مناسبة للزوار والعملاء المتنوعين.',
+    latitude: 24.4681,
+    longitude: 39.5924,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2012-01-01',
+    end_date: '2020-12-31',
+    duration_years: 8,
+    executing_entity: 'Crowne Plaza',
+    area_value: 17000,
+    area_unit: 'square_meter',
+  },
+  {
+    id: '0f02c4a9-5ac1-4aa7-bc07-4c337e80210d',
+    project_name: 'ماريوت المدينة',
+    category: 'فندقي',
+    description: 'فندق مريح وراقي يركّز على خدمات الضيافة العالمية وتوفير تجربة مناسبة لزوار المدينة.',
+    latitude: 24.4732,
+    longitude: 39.5825,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2011-01-01',
+    end_date: '2019-12-31',
+    duration_years: 8,
+    executing_entity: 'Marriott',
+    area_value: 18000,
+    area_unit: 'square_meter',
+  },
+  {
+    id: '1dfdee3b-d787-4121-a54d-694d745a3dc1',
+    project_name: 'طيبة المدينة',
+    category: 'فندقي',
+    description: 'فندق عملي ومريح يركز على خدمة الزوار في المدينة المنورة بتجهيزات مناسبة وبيئة مريحة.',
+    latitude: 24.4714,
+    longitude: 39.5979,
+    progress: 100,
+    status: 'مكتمل',
+    start_date: '2014-01-01',
+    end_date: '2022-12-31',
+    duration_years: 8,
+    executing_entity: 'Taiba Group',
+    area_value: 12500,
+    area_unit: 'square_meter',
+  },
+];
+
+const result = await supabase.from('projects').insert(rows).select();
+console.log('INSERT_RESULT');
+console.log(JSON.stringify({
+  insertError: result.error ? { message: result.error.message, code: result.error.code, details: result.error.details, hint: result.error.hint } : null,
+  insertedCount: result.data ? result.data.length : 0,
+  insertedNames: result.data ? result.data.map((r) => r.project_name) : [],
+}, null, 2));
+
+const filter = await supabase.from('projects').select('project_name, category').eq('category', 'فندقي');
+console.log('FILTER_RESULT');
+console.log(JSON.stringify({
+  filterError: filter.error ? { message: filter.error.message, code: filter.error.code, details: filter.error.details, hint: filter.error.hint } : null,
+  count: filter.data ? filter.data.length : 0,
+  names: filter.data ? filter.data.map((r) => r.project_name) : [],
+}, null, 2));

@@ -1,0 +1,206 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --shadow-elegant: 0 12px 40px -12px color-mix(in oklab, var(--primary) 30%, transparent);
+  --shadow-soft: 0 6px 24px -8px color-mix(in oklab, var(--primary) 18%, transparent);
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary),
+    color-mix(in oklab, var(--primary) 70%, var(--gold))
+  );
+  --gradient-hero-overlay: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--primary) 55%, transparent) 0%,
+    color-mix(in oklab, var(--primary) 85%, transparent) 100%
+  );
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Warm off-white / beige background */
+  --background: oklch(0.985 0.008 85);
+  --foreground: oklch(0.22 0.03 155);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.03 155);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.03 155);
+
+  /* Deep Madinah green */
+  --primary: oklch(0.32 0.06 155);
+  --primary-foreground: oklch(0.985 0.008 85);
+  --primary-soft: oklch(0.55 0.08 155);
+
+  /* Beige secondary */
+  --secondary: oklch(0.94 0.02 85);
+  --secondary-foreground: oklch(0.28 0.05 155);
+
+  --muted: oklch(0.95 0.015 85);
+  --muted-foreground: oklch(0.48 0.02 155);
+
+  --accent: oklch(0.93 0.03 85);
+  --accent-foreground: oklch(0.28 0.05 155);
+
+  /* Gold touches */
+  --gold: oklch(0.72 0.12 78);
+  --gold-soft: oklch(0.86 0.07 85);
+
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.008 85);
+
+  --border: oklch(0.9 0.02 85);
+  --input: oklch(0.9 0.02 85);
+  --ring: oklch(0.55 0.08 155);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    direction: rtl;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility btn-primary {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-soft);
+  &:hover {
+    background: color-mix(in oklab, var(--color-primary) 88%, var(--color-gold));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-elegant);
+  }
+}
+
+@utility btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  border: 1.5px solid var(--color-primary);
+  transition: all 0.25s ease;
+  &:hover {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+@utility input-field {
+  width: 100%;
+  border: 1px solid var(--color-input);
+  border-radius: var(--radius-lg);
+  background: var(--color-background);
+  padding: 0.65rem 0.75rem;
+  color: var(--color-foreground);
+  font-weight: 400;
+  outline: none;
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 15%, transparent);
+  }
+}
+
+@utility gold-divider {
+  height: 2px;
+  width: 48px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+  border-radius: 2px;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@utility animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
+@keyframes story-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes story-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.story-backdrop {
+  animation: story-backdrop-in 180ms ease-out both;
+}
+.story-dialog {
+  animation: story-dialog-in 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-backdrop,
+  .story-dialog {
+    animation: none;
+  }
+}
