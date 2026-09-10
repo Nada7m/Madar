@@ -8,6 +8,8 @@ const supabase = createClient(url, key, {
 
 const tables = ['projects', 'project_images', 'project_updates', 'profiles'];
 
+
+
 const out = {};
 for (const table of tables) {
   const { data, error } = await supabase.from(table).select('*');
